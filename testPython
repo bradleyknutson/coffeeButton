@@ -1,2 +1,0 @@
-import execjs
-execjs.eval('console.log(1+2)')
