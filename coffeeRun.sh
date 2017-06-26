@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo python /home/pi/Documents/coffee/coffeeButton.py
+sudo node /home/pi/Documents/coffee/coffeeButton2.js
