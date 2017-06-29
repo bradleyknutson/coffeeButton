@@ -22,7 +22,7 @@ work: function(my) {
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-type', 'application/json');
         var data = JSON.stringify(slackOut);
-        xhr.send(data); 
+        xhr.send(data);
     });
 
     my.blueButton.on('release', function() {
@@ -34,3 +34,5 @@ work: function(my) {
 }
 
 }).start();
+
+console.log('Testing this change');
