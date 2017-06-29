@@ -2,6 +2,23 @@ var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var slackOut = require('/home/pi/Documents/coffeeButton/coffeeOut.json');
 var slackIn = require('/home/pi/Documents/coffeeButton/coffeeIn.json');
 var Cylon = require('cylon');
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: 'localhost',
+  user: 'bknutson'
+  password: 'v4mnBF%U$r23VtrX',
+  database: 'coffeeDb'
+})
+
+con.connect(function(err) {
+  if (err) throw err;
+  var sql = "INSERT INTO coffeeStatus (available) VALUES ('yes')";
+  con.query(sql, function(err,result) {
+    if (err) throw err;
+  });
+});
+
 
 Cylon.robot({
 
@@ -22,7 +39,7 @@ work: function(my) {
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-type', 'application/json');
         var data = JSON.stringify(slackOut);
-        xhr.send(data); 
+        xhr.send(data);
     });
 
     my.blueButton.on('release', function() {
