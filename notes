@@ -1,0 +1,22 @@
+Requires node.js
+After installing node install xmlhttprequest via npm
+install cylon
+    -sudo npm install cylon cylon-firmata cylon-gpio cylon-i2c cylon-raspi
+    -sudo usermod -G gpio pi
+    -Add the following rules to /etc/udev/rules.d/91-gpio.rules
+        -SUBSYSTEM=="gpio", KERNEL=="gpiochip*", ACTION=="add", PROGRAM="/bin/sh -c 'chown root:gpio /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add", PROGRAM="/bin/sh -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
+
+    -Enable rasperry pi i2c on Raspbian
+        -add these two entries to /etc/modules
+            -i2c-bcm2708
+            -i2c-dev
+        -ensure these entries are commented in /etc/modprobe.d/raspi-blacklist.conf
+            -#blacklist spi-bcm2708
+            -#blacklist i2c-bcm2708
+        -update /boot/config.txt to add following
+            -dtparam=i2c1=on
+            -dtparam=i2c_arm=on
+        -allow pi to access i2c
+            -sudo usermod -G i2c pi
+    -restart pi

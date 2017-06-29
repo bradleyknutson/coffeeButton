@@ -9,7 +9,7 @@
     "sinon-chai": "2.8.0"
   },
   "dependencies": {
-    "cylon": "1.2.0",
+    "cylon": "^1.2.0",
     "cylon-gpio": "^0.30.1",
     "cylon-i2c": "^0.26.1",
     "cylon-raspi": "^0.20.1",
